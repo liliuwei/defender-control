@@ -56,9 +56,13 @@ class DefenderControlApp(QtWidgets.QWidget):
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableScanOnRealtimeEnable" /t REG_DWORD /d 1 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableIOAVProtection" /t REG_DWORD /d 1 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableRealtimeMonitoring" /t REG_DWORD /d 1 /f' + '\n')
+                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableRealtimeMonitoring" /t REG_DWORD /d 1 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "DisableBlockAtFirstSeen" /t REG_DWORD /d 1 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d 2 /f' + '\n')
-
+                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d 2 /f' + '\n')
+                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableCloudProtection" /t REG_DWORD /d 1 /f' + '\n')
+                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableQuickScan" /t REG_DWORD /d 1 /f' + '\n')
+                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Features" /v "DisableScheduledScan" /t REG_DWORD /d 1 /f' + '\n')
             # 运行批处理文件
             subprocess.run('disable_defender.bat', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             os.remove('disable_defender.bat')  # 删除批处理文件
