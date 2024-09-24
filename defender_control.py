@@ -62,7 +62,6 @@ class DefenderControlApp(QtWidgets.QWidget):
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d 2 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableCloudProtection" /t REG_DWORD /d 1 /f' + '\n')
                 f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableQuickScan" /t REG_DWORD /d 1 /f' + '\n')
-                f.write(r'reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Features" /v "DisableScheduledScan" /t REG_DWORD /d 1 /f' + '\n')
             # 运行批处理文件
             subprocess.run('disable_defender.bat', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             os.remove('disable_defender.bat')  # 删除批处理文件
@@ -75,8 +74,6 @@ class DefenderControlApp(QtWidgets.QWidget):
             # 将多个注册表删除命令写入批处理文件
             with open('enable_defender.bat', 'w') as f:
                 f.write(r'reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /f' + '\n')
-                f.write(r'reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /f' + '\n')
-                f.write(r'reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /f' + '\n')
 
             # 运行批处理文件
             subprocess.run('enable_defender.bat', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
